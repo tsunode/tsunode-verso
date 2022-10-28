@@ -1,16 +1,15 @@
 import { css } from 'styled-components';
 
 export const FieldsetStyled = css`
-  p {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
   fieldset {
     position: relative;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 
+    > p {
+      text-align: center;
+      margin-bottom: 32px;
+    }
     legend {
       font-size: 20px;
       float: left;

@@ -19,7 +19,11 @@ interface ILoginData {
 }
 
 export const Login = () => {
-  const { handleSubmit, register } = useForm<ILoginData>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<ILoginData>({
     resolver: yupResolver(schema),
   });
   const navigate = useNavigate();
@@ -37,13 +41,20 @@ export const Login = () => {
       <Form onSubmit={handleSubmit(login)}>
         <fieldset>
           <legend>Faça seu login:</legend>
-          <Input label='E-mail' id='email' type='email' {...register('email')}>
+          <Input
+            label='E-mail'
+            id='email'
+            type='email'
+            error={errors.email?.message}
+            {...register('email')}
+          >
             <MdEmail />
           </Input>
           <Input
             label='Senha'
             id='password'
             type='password'
+            error={errors.password?.message}
             {...register('password')}
           >
             <HiKey />

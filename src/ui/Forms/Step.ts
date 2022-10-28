@@ -34,7 +34,7 @@ export const FormStep = styled.form<IFormProps>`
       width: calc(var(--total-items) * 100%);
       transition: left 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-      div {
+      > div {
         padding: 0 32px;
         margin-right: 30px;
       }

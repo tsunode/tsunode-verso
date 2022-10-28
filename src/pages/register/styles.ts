@@ -4,6 +4,12 @@ interface IStepsProps {
   step: number;
 }
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const Steps = styled.div<IStepsProps>`
   display: flex;
   justify-content: center;
