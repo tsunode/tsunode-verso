@@ -1,0 +1,24 @@
+import styled from 'styled-components';
+
+interface IContainerProps {
+  size: number;
+}
+
+export const Container = styled.figure<IContainerProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-image: linear-gradient(to right, #02fe50, #49b866, #b1ffc6);
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
+
+  img {
+    width: ${({ size }) => size - 4}px;
+    height: ${({ size }) => size - 4}px;
+
+    border-radius: 50%;
+  }
+`;
