@@ -61,7 +61,7 @@ export const Login = () => {
           </Input>
 
           <Button variant='primary'>Entrar</Button>
-          <Link to='/register'>Não é cadastrado ainda? Clique aqui</Link>
+          <Link to='/signup'>Não é cadastrado ainda? Clique aqui</Link>
         </fieldset>
       </Form>
     </Main>
