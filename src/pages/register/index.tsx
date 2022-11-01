@@ -43,7 +43,7 @@ export const Register = () => {
 
   return (
     <Main>
-      <Link to='/'>
+      <Link variant='icon' to='/'>
         <AiOutlineArrowLeft />
       </Link>
 

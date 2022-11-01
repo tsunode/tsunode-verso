@@ -1,33 +1,24 @@
-import { FiSearch } from 'react-icons/fi';
+import { ReactNode, Children } from 'react';
 
-import { useForm } from 'react-hook-form';
-import { Input } from '../Input';
-import { Container } from './styles';
-
-import logoTsunodeVerso from '../../assets/tsunodeverso.svg';
 import { Profile } from '../Profile';
-import { Button } from '../../ui/Button';
+import { Container } from './styles';
+import logoTsunodeVerso from '../../assets/tsunodeverso.svg';
 
-export const Header = () => {
-  const { register } = useForm<{ project: string }>();
+interface IHeaderProps {
+  children?: ReactNode;
+}
+
+export const Header = ({ children }: IHeaderProps) => {
+  const [FormSearch, LinkNewProject] = Children.toArray(children);
 
   return (
     <Container>
       <img src={logoTsunodeVerso} alt='Logo Tsunode Verso' />
 
-      {/* @todo colocar no form */}
-      <form>
-        <Input
-          label='Procurar por projetos...'
-          id='project'
-          {...register('project')}
-        >
-          <FiSearch />
-        </Input>
-      </form>
+      {FormSearch}
 
       <div>
-        <Button variant='primary'>Novo projeto</Button>
+        {LinkNewProject}
         <Profile size={60} />
       </div>
     </Container>
