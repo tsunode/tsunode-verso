@@ -16,6 +16,10 @@ export const Container = styled.div`
 
     transition: all 0.3s ease-out;
 
+    &:focus-within {
+      border: 1px solid var(--color-primary);
+    }
+
     label {
       display: flex;
       align-items: center;
@@ -25,13 +29,18 @@ export const Container = styled.div`
       top: 0;
       left: 12px;
 
-      transition: all 0.3s ease-out;
+      transition: top 0.5s, left 0.3s ease-out;
     }
 
     & input:focus + label,
     & input:not(:placeholder-shown) + label {
-      top: -35px;
-      left: 5px;
+      top: -13px;
+      left: 10px;
+      background-color: var(--color-primary);
+      padding: 3px 9px;
+      border-radius: 5px;
+      height: fit-content;
+      font-size: 13px;
     }
 
     input {
