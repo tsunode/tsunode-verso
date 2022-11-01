@@ -12,8 +12,8 @@ export const Container = styled.figure<IContainerProps>`
   border-radius: 50%;
 
   background-image: linear-gradient(to right, #02fe50, #49b866, #b1ffc6);
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  min-width: ${({ size }) => size}px;
+  min-height: ${({ size }) => size}px;
 
   img {
     width: ${({ size }) => size - 4}px;
