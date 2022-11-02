@@ -37,6 +37,7 @@ export const Container = styled.div`
       top: -13px;
       left: 10px;
       background-color: var(--color-primary);
+      color: #000;
       padding: 3px 9px;
       border-radius: 5px;
       height: fit-content;

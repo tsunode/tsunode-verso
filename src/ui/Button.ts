@@ -41,6 +41,8 @@ export const Button = styled.button<IButtonProps>`
   ${({ variant }) => ButtonStyled[variant]}
 
   border: none;
+  width: 100%;
+  min-height: 48px;
 `;
 
 export const Link = styled(LinkRouter)<IButtonProps>`
