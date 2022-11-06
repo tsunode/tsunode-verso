@@ -4,7 +4,7 @@ interface IContainerProps {
   size: number;
 }
 
-export const Container = styled.div<IContainerProps>`
+export const Container = styled.a<IContainerProps>`
   grid-row-end: span ${({ size }) => size};
   width: 230px;
   margin: 15px 10px;
@@ -19,6 +19,9 @@ export const Container = styled.div<IContainerProps>`
   padding: 8px;
   border-radius: 16px;
   height: fit-content;
+
+  text-decoration: none;
+  color: #fff;
 
   > div:nth-of-type(1) {
     position: relative;

@@ -1,11 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { Navigate, useNavigate } from 'react-router-dom';
+
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { InputFile } from '../../components/InputFile';
 import { useProject } from '../../providers/projectContext';
-import { storeProject } from '../../services/projectsService';
 import { Button, Link } from '../../ui/Button';
 import { Form } from '../../ui/Forms';
 

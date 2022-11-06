@@ -5,6 +5,7 @@ type Variant = 'primary' | 'inline' | 'icon';
 
 interface IButtonProps {
   variant: Variant;
+  width?: string;
 }
 
 const ButtonStyled = {
@@ -41,7 +42,7 @@ export const Button = styled.button<IButtonProps>`
   ${({ variant }) => ButtonStyled[variant]}
 
   border: none;
-  width: 100%;
+  width: ${({ width }) => width || '100%'};
   min-height: 48px;
 `;
 
@@ -54,6 +55,6 @@ export const Link = styled(LinkRouter)<IButtonProps>`
   align-self: flex-start;
 
   text-decoration: none;
-
+  width: ${({ width }) => width || '100%'};
   margin: auto;
 `;

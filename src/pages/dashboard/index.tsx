@@ -1,24 +1,17 @@
 import { FiSearch } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'react-router-dom';
+
 import { Header } from '../../components/Header';
 import { Card } from '../../components/Card';
 import { Section } from './styles';
-import { Link } from '../../ui/Button';
+import { Button, Link } from '../../ui/Button';
 import { Input } from '../../components/Input';
 import { InfiniteScroll } from '../../components/InfiniteScroll';
 import { useProject } from '../../providers/projectContext';
 
 export const Dashboard = () => {
   const { register, handleSubmit } = useForm<{ project: string }>();
-  const { projects, setProjectPage } = useProject();
-  const [, setSearchParams] = useSearchParams();
-
-  function handleFilterProject(data: { project: string }) {
-    setSearchParams({
-      q: data.project,
-    });
-  }
+  const { projects, setProjectPage, handleFilterProject } = useProject();
 
   return (
     <main>
@@ -29,7 +22,9 @@ export const Dashboard = () => {
             id='project'
             {...register('project')}
           >
-            <FiSearch />
+            <Button variant='inline' width='auto'>
+              <FiSearch />
+            </Button>
           </Input>
         </form>
 

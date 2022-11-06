@@ -19,6 +19,7 @@ interface IProjectContext {
   projects: IProject[];
   createProject(data: ICreateProject): void;
   setProjectPage(newPage: number): void;
+  handleFilterProject(data: { project: string }): void;
 }
 
 interface IAuthProviderProps {
@@ -73,13 +74,21 @@ export const ProjectProvider = ({ children }: IAuthProviderProps) => {
     }
   }
 
+  function handleFilterProject(data: { project: string }) {
+    setProjects([]);
+    setSearchParams({
+      q: data.project,
+    });
+    setPage(1);
+  }
+
   function setProjectPage(newPage: number) {
     setPage((prevPages) => prevPages + newPage);
   }
 
   return (
     <ProjectContext.Provider
-      value={{ createProject, projects, setProjectPage }}
+      value={{ createProject, projects, setProjectPage, handleFilterProject }}
     >
       {children}
     </ProjectContext.Provider>

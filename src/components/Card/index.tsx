@@ -1,10 +1,17 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GRID_SECTION_ROW_SIZE } from '../../pages/dashboard/styles';
 import { IProject } from '../../services/projectsService';
 import { Profile } from '../Profile';
 import { Container } from './styles';
 
-export const Card = ({ thumbUrl, title, description, user }: IProject) => {
+export const Card = ({
+  link,
+  thumbUrl,
+  title,
+  description,
+  user,
+}: IProject) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const [imageSize, setImageSize] = useState(0);
 
@@ -24,7 +31,7 @@ export const Card = ({ thumbUrl, title, description, user }: IProject) => {
   }
 
   return (
-    <Container size={imageSize}>
+    <Container size={imageSize} href={link} target='_blank' rel='noreferrer'>
       <div>
         <img onLoad={getImageSize} ref={imageRef} src={thumbUrl} alt={title} />
         <div>
