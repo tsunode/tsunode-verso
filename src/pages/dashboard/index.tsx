@@ -1,21 +1,29 @@
 import { FiSearch } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
 import { Header } from '../../components/Header';
-import teste1 from '../../assets/teste1.jpg';
-import teste2 from '../../assets/teste2.jpg';
-import teste3 from '../../assets/teste3.jpg';
 import { Card } from '../../components/Card';
 import { Section } from './styles';
 import { Link } from '../../ui/Button';
 import { Input } from '../../components/Input';
+import { InfiniteScroll } from '../../components/InfiniteScroll';
+import { useProject } from '../../providers/projectContext';
 
 export const Dashboard = () => {
-  const { register } = useForm<{ project: string }>();
+  const { register, handleSubmit } = useForm<{ project: string }>();
+  const { projects, setProjectPage } = useProject();
+  const [, setSearchParams] = useSearchParams();
+
+  function handleFilterProject(data: { project: string }) {
+    setSearchParams({
+      q: data.project,
+    });
+  }
 
   return (
     <main>
       <Header>
-        <form>
+        <form onSubmit={handleSubmit(handleFilterProject)}>
           <Input
             label='Procurar por projetos...'
             id='project'
@@ -31,32 +39,11 @@ export const Dashboard = () => {
       </Header>
 
       <Section>
-        <Card image={teste2} />
-        <Card image={teste2} />
-        <Card image={teste2} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste1} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste3} />
-        <Card image={teste3} />
-        <Card image={teste3} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
-        <Card image={teste2} />
-        <Card image={teste1} />
+        {projects.map((project) => (
+          <Card key={project.id} {...project} />
+        ))}
+
+        <InfiniteScroll callback={() => setProjectPage(1)} />
       </Section>
     </main>
   );
