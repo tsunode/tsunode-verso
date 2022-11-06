@@ -24,7 +24,7 @@ export const InputFile = forwardRef<HTMLInputElement, IInputProps>(
     const [isDragging, setIsDragging] = useState(false);
 
     useEffect(() => {
-      if (watchFile) {
+      if (watchFile && watchFile.length) {
         setPreviewImage(URL.createObjectURL(watchFile[0]));
         setIsDragging(false);
       }
