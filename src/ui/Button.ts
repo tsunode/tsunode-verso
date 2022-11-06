@@ -47,14 +47,14 @@ export const Button = styled.button<IButtonProps>`
 `;
 
 export const Link = styled(LinkRouter)<IButtonProps>`
-  ${({ variant }) => ButtonStyled[variant]}
-
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
 
   text-decoration: none;
-  width: ${({ width }) => width || '100%'};
+  width: ${({ width }) => width || 'fit-content'};
   margin: auto;
+
+  ${({ variant }) => ButtonStyled[variant]}
 `;
