@@ -1,12 +1,13 @@
 import { Container } from './styles';
-import perfil from '../../assets/perfil.jpg';
+import profile from '../../assets/profile.webp';
 
 interface IProfileProps {
+  img: string | null;
   size: number;
 }
 
-export const Profile = ({ size }: IProfileProps) => (
+export const Profile = ({ size, img }: IProfileProps) => (
   <Container size={size}>
-    <img src={perfil} alt='Foto do Tsunode' />
+    <img src={img || profile} alt='Foto do Tsunode' />
   </Container>
 );

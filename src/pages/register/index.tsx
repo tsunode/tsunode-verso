@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 import { Input } from '../../components/Input';
 
 import { Main } from '../../ui/Main';
@@ -13,15 +15,7 @@ import { schema } from './validations';
 import logoTsunodeVerso from '../../assets/tsunodeverso.svg';
 import { FormStep } from '../../ui/Forms';
 import { Container, Steps } from './styles';
-
-interface IRegisterData {
-  name: string;
-  surname: string;
-  title: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { IRegisterData, registerUser } from '../../services/usersService';
 
 export const Register = () => {
   const [step, setStep] = useState(1);
@@ -35,10 +29,21 @@ export const Register = () => {
   });
   const navigate = useNavigate();
 
-  function login(data: IRegisterData) {
-    console.log(data);
+  async function login(data: IRegisterData) {
+    try {
+      await registerUser(data);
 
-    navigate('/');
+      toast.success('Usuário cadastrado com sucesso, realize o login');
+      navigate('/');
+    } catch (error) {
+      if (error instanceof axios.AxiosError && error.response?.status === 400) {
+        toast.error('Usuário já cadastrado na plataforma');
+
+        return;
+      }
+
+      toast.error('Erro Interno');
+    }
   }
 
   return (
@@ -107,10 +112,10 @@ export const Register = () => {
                 />
                 <Input
                   label='Confirmar senha'
-                  id='confirmPassword'
+                  id='passwordConfirmation'
                   type='password'
-                  error={errors.confirmPassword?.message}
-                  {...register('confirmPassword')}
+                  error={errors.passwordConfirmation?.message}
+                  {...register('passwordConfirmation')}
                 />
 
                 <Button type='submit' variant='primary'>

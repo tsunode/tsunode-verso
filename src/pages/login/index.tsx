@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdEmail } from 'react-icons/md';
 import { HiKey } from 'react-icons/hi';
 
@@ -12,33 +12,24 @@ import { schema } from './validations';
 
 import logoTsunodeVerso from '../../assets/tsunodeverso.svg';
 import { Form } from '../../ui/Forms';
-
-interface ILoginData {
-  email: string;
-  password: string;
-}
+import { useAuth } from '../../providers/authContext';
+import { IUserLogin } from '../../services/sessionsService';
 
 export const Login = () => {
+  const { signIn } = useAuth();
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<ILoginData>({
+  } = useForm<IUserLogin>({
     resolver: yupResolver(schema),
   });
-  const navigate = useNavigate();
-
-  function login(data: ILoginData) {
-    console.log(data);
-
-    navigate('/home', { replace: true });
-  }
 
   return (
     <Main>
       <img src={logoTsunodeVerso} alt='Logo Tsunode Verso' />
 
-      <Form onSubmit={handleSubmit(login)}>
+      <Form onSubmit={handleSubmit(signIn)}>
         <fieldset>
           <legend>Faça seu login:</legend>
           <Input

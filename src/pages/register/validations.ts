@@ -17,7 +17,7 @@ export const schema = yup
       .matches(/(\W)|_/, 'Deve conter um caracter especial')
       .matches(/.{8,}/, 'Deve ter no minimo 8 digitos')
       .required('Senha é obrigatória'),
-    confirmPassword: yup
+    passwordConfirmation: yup
       .string()
       .oneOf(
         [yup.ref('password')],
