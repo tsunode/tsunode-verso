@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { GRID_SECTION_ROW_SIZE } from '../../pages/dashboard/styles';
 import { IProject } from '../../services/projectsService';
 import { Profile } from '../Profile';
@@ -26,7 +25,7 @@ export const Card = ({
     const size = Math.round(
       height / GRID_SECTION_ROW_SIZE + GRID_CONTENT_SPAN_SIZE
     );
-
+    // 200
     setImageSize(size);
   }
 

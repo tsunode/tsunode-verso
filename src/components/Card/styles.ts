@@ -5,9 +5,10 @@ interface IContainerProps {
 }
 
 export const Container = styled.a<IContainerProps>`
+  grid-row-end: span somegridarea;
   grid-row-end: span ${({ size }) => size};
   width: 230px;
-  margin: 15px 10px;
+  /* margin: 15px 10px; */
 
   background: linear-gradient(
     180deg,

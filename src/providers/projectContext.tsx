@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   createContext,
   ReactNode,
@@ -35,19 +36,35 @@ export const ProjectProvider = ({ children }: IAuthProviderProps) => {
   const [projects, setProjects] = useState<IProject[]>([]);
   const [page, setPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getProjects() {
-      const response = await getAllProjects({
-        page,
-        q: searchParams.get('q'),
-      });
+    setLoading(true);
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
 
-      setProjects([...projects, ...response]);
+    async function getProjects() {
+      try {
+        const response = await getAllProjects({
+          page,
+          q: searchParams.get('q'),
+          cancelToken: source.token,
+        });
+
+        setProjects([...projects, ...response]);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     getProjects();
+
+    return () => {
+      source.cancel();
+    };
   }, [page, searchParams]);
 
   async function createProject(data: ICreateProject) {

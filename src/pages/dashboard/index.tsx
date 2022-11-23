@@ -9,6 +9,10 @@ import { Input } from '../../components/Input';
 import { InfiniteScroll } from '../../components/InfiniteScroll';
 import { useProject } from '../../providers/projectContext';
 
+import teste1 from '../../assets/teste1.jpg';
+import teste2 from '../../assets/teste2.jpg';
+import teste3 from '../../assets/teste3.jpg';
+
 export const Dashboard = () => {
   const { register, handleSubmit } = useForm<{ project: string }>();
   const { projects, setProjectPage, handleFilterProject } = useProject();
@@ -37,6 +41,16 @@ export const Dashboard = () => {
         {projects.map((project) => (
           <Card key={project.id} {...project} />
         ))}
+
+        {/* <Card {...projects[0]} thumbUrl={teste1} />
+        <Card {...projects[0]} thumbUrl={teste2} />
+        <Card {...projects[0]} thumbUrl={teste3} />
+        <Card {...projects[0]} thumbUrl={teste1} />
+        <Card {...projects[0]} thumbUrl={teste2} />
+        <Card {...projects[0]} thumbUrl={teste3} />
+        <Card {...projects[0]} thumbUrl={teste1} />
+        <Card {...projects[0]} thumbUrl={teste2} />
+        <Card {...projects[0]} thumbUrl={teste3} /> */}
 
         <InfiniteScroll callback={() => setProjectPage(1)} />
       </Section>

@@ -1,3 +1,4 @@
+import { CancelToken } from 'axios';
 import { IUser } from './usersService';
 import { api } from './api';
 
@@ -19,12 +20,14 @@ interface IGetProjectFilter {
   page: number;
   pageSize?: number;
   q?: string | null;
+  cancelToken: CancelToken;
 }
 
 export const getAllProjects = async ({
   page,
   pageSize = 10,
   q,
+  cancelToken,
 }: IGetProjectFilter): Promise<IProject[]> => {
   const response = await api.get<IProject[]>('/projects', {
     params: {
@@ -32,6 +35,7 @@ export const getAllProjects = async ({
       pageSize,
       q,
     },
+    cancelToken,
   });
 
   return response.data;

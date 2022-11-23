@@ -32,8 +32,7 @@ export const Container = styled.div`
       transition: top 0.5s, left 0.3s ease-out;
     }
 
-    & input:focus + label,
-    & input:not(:placeholder-shown) + label {
+    & input:is(:focus, :not(:placeholder-shown)) + label {
       top: -13px;
       left: 10px;
       background-color: var(--color-primary);
@@ -43,6 +42,18 @@ export const Container = styled.div`
       height: fit-content;
       font-size: 13px;
     }
+
+    /* & input:focus + label,
+    & input:not(:placeholder-shown) + label {
+      top: -13px;
+      left: 10px;
+      background-color: var(--color-primary);
+      color: #000;
+      padding: 3px 9px;
+      border-radius: 5px;
+      height: fit-content;
+      font-size: 13px;
+    } */
 
     input {
       background: none;
